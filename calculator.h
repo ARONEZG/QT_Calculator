@@ -71,8 +71,11 @@ double Calculator::FillStack(iterator begin, iterator end) {
             if (*(it + 1) == "(") {
                 auto [left, right] = CountBrackets(it + 1, end);
                 d = FillStack(left + 1, right);
-                d = *it == "+" ?  d + numbers_.back() : numbers_.back() - d;
-                numbers_.pop_back();
+                if (!numbers_.empty()) {
+                    d = *it == "+" ?  d + numbers_.back() : numbers_.back() - d;
+                    numbers_.pop_back();
+                }
+                d = *it == "+" ?  d : - d;
                 numbers_.push_back(d);
                 it = right;
                 continue;
