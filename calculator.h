@@ -5,10 +5,10 @@
 #include <string_view>
 #include <deque>
 #include <utility>
-#include <map>
 #include <cassert>
+#include <QObject>
 
-class Calculator {
+class Calculator : public QObject, private ExpressionConverter {
 public:
     Calculator();
 
